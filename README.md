@@ -1,32 +1,30 @@
-# Data-Engineering
+Data-Engineering
 My end-to-end data engineering learning path: ETL pipelines, Advanced SQL, and Automation
-# 🚀 Data Engineering Journey
 
+🚀 Data Engineering Journey
 A comprehensive, step-by-step portfolio demonstrating end-to-end data engineering skills, from basic ETL to advanced analytics and automation.
 
-## 🎯 Project Overview
+🎯 Project Overview
 This repository documents my progression in data engineering. Instead of multiple fragmented projects, I am building a single, robust data pipeline that evolves in complexity. The core scenario revolves around extracting cryptocurrency market data, transforming it for analytical use, and generating actionable insights.
 
-## 🏗️ Architecture & Phases
+🏗️ Architecture & Phases
+Phase 1: Python ETL Pipeline & Database Migration (Completed)
+Objective: Ingest raw financial data from an external API, clean it, and load it into a relational database, evolving from a local prototype to a production-ready architecture.
+Tech Stack: Python, Pandas, SQLite (Initial), PostgreSQL (Current), SQLAlchemy, REST API
 
-### Phase 1: Python ETL Pipeline (Completed)
-*   **Objective:** Ingest raw financial data from an external API, clean it, and load it into a local relational database.
-*   **Tech Stack:** Python, Pandas, SQLite, REST API
-*   **Process:**
-    *   **Extract:** Fetches top 50 cryptocurrencies by market cap using the CoinGecko API.
-    *   **Transform:** Flattens JSON data, standardizes column names, filters out missing values (Null handling), and adds ingestion timestamps.
-    *   **Load:** Appends the cleaned, structured data into a local `SQLite` database (`kripto_piyasa.db`) for historical tracking.
+Process:
 
-### Phase 2: Advanced Analytical SQL (Completed)
-*   **Objective:** Utilize `CTEs` and `Window Functions` (e.g., `RANK()`) to segment data and extract business insights, such as identifying the "Top 3 highest gaining coins in the last 24 hours."
+Extract: Fetches top 50 cryptocurrencies by market cap using the CoinGecko API.
 
-### Phase 3: Data Visualization & BI (Upcoming)
-*   **Live Dashboard:** [Tableau Public Profilimde İnceleyin](https://public.tableau.com/views/KriptoPiyasaAnalizi/Dashboard1)
+Transform: Flattens JSON data, standardizes column names, filters out missing values (Null handling), and adds ingestion timestamps.
 
-### Phase 4: Workflow Orchestration (Completed)
-*   **Objective:** Automate the entire pipeline using Apache Airflow, implementing retry mechanisms and daily scheduling.
+Load & Architecture Migration: Initially appended the cleaned, structured data into a local SQLite database (kripto_piyasa.db) for rapid prototyping. The infrastructure was subsequently modernized and migrated to a robust PostgreSQL server. The data flow and connection management are now orchestrated using the SQLAlchemy engine for production-level reliability and data integrity.
 
-## ⚙️ How to Run Locally
+Phase 2: Advanced Analytical SQL (Completed)
+Objective: Utilize CTEs and Window Functions (e.g., RANK()) on the new PostgreSQL architecture to segment data and extract business insights, such as identifying the "Top 3 highest gaining coins in the last 24 hours."
 
-1. Clone this repository:
- git clone [https://github.com/ceydauzn/Data-Engineering-Journey.git](https://github.com/ceydauzn/Data-Engineering-Journey.git)
+Phase 3: Data Visualization & BI (Upcoming)
+Live Dashboard: Tableau Public Profilimde İnceleyin (Connecting directly to the PostgreSQL instance)
+
+Phase 4: Workflow Orchestration (Completed)
+Objective: Automate the entire pipeline using Apache Airflow. Implemented retry mechanisms and daily scheduling (Cron format) to ensure consistent, autonomous data ingestion into the PostgreSQL database.
