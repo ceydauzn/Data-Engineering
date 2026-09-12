@@ -21,7 +21,7 @@ This repository documents my progression in data engineering. Instead of multipl
 *   **Objective:** Utilize `CTEs` and `Window Functions` (e.g., `RANK()`) to segment data and extract business insights, such as identifying the "Top 3 highest gaining coins in the last 24 hours."
 
 ### Phase 3: Data Visualization & BI (Upcoming)
-*   **Objective:** Connect the local database to a BI tool (Power BI/Tableau) to build interactive dashboards for business stakeholders.
+*   **Live Dashboard:** [Tableau Public Profilimde İnceleyin](https://public.tableau.com/views/KriptoPiyasaAnalizi/Dashboard1)
 
 ### Phase 4: Workflow Orchestration (Completed)
 *   **Objective:** Automate the entire pipeline using Apache Airflow, implementing retry mechanisms and daily scheduling.
