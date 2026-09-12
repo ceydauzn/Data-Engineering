@@ -28,7 +28,7 @@ This repository documents my progression in data engineering. Instead of multipl
 
 ### Phase 3: Data Visualization & BI (Upcoming)
 
-**Live Dashboard:** [Tableau Public Profilimde İnceleyin] *(Connecting directly to the PostgreSQL instance for dynamic reporting)*
+**Live Dashboard:** [Tableau Public Profilimde İnceleyin](https://public.tableau.com/views/KriptoPiyasaAnalizi/Dashboard1)
 
 ### Phase 4: Workflow Orchestration (Completed)
 
