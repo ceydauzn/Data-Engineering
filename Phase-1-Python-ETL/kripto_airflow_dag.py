@@ -3,7 +3,7 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 import requests
 import pandas as pd
-import sqlite3
+from sqlalchemy import create_engine
 
 # 1. ETL İşlemimizi Bir Fonksiyon Haline Getiriyoruz
 def run_kripto_etl():
@@ -23,11 +23,12 @@ def run_kripto_etl():
     }, inplace=True)
     df.dropna(subset=['fiyat_usd', 'islem_hacmi_usd'], inplace=True)
 
-    # Airflow sunucusunda çalışırken dosya yolunun tam (absolute) belirtilmesi best practice'dir
-    conn = sqlite3.connect('kripto_piyasa.db') 
-    df.to_sql('gunluk_piyasa_ozeti', conn, if_exists='replace', index=False)
-    conn.close()
-    print("ETL Başarıyla Tamamlandı ve Veritabanına Yazıldı!")
+    # PostgreSQL veritabanı bağlantı motoru oluşturuluyor
+    engine = create_engine('postgresql://postgres:admin123@localhost:5432/crypto_db') 
+    
+    # Veri PostgreSQL'e aktarılıyor
+    df.to_sql('gunluk_piyasa_ozeti', engine, if_exists='replace', index=False)
+    print("ETL Başarıyla Tamamlandı ve PostgreSQL Veritabanına Yazıldı!")
 
 # 2. Airflow Kuralları (Hata yaparsa ne olacak? Süreç kime ait?)
 default_args = {
@@ -57,5 +58,4 @@ gorev_etl = PythonOperator(
     dag=dag,
 )
 
-# Birden fazla görev olsaydı sıralama yapardık (Örn: gorev_etl >> gorev_sql_analiz)
 gorev_etl

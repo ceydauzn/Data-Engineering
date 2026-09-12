@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-import sqlite3
+from sqlalchemy import create_engine
 from datetime import datetime
 
 print("1. EXTRACT: CoinGecko API'den veriler çekiliyor...")
@@ -31,12 +31,12 @@ df.dropna(subset=['fiyat_usd', 'islem_hacmi_usd'], inplace=True)
 # Analiz için verinin sisteme giriş (kodun çalıştığı) anını kaydediyoruz
 df['kayit_tarihi'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-print("3. LOAD: Veritabanına yazılıyor...")
-# Aynı klasörde 'kripto_piyasa.db' adında bir veritabanı oluşturur
-conn = sqlite3.connect('kripto_piyasa.db')
+print("3. LOAD: Veritabanına yazılıyor (PostgreSQL)...")
+
+# PostgreSQL veritabanına bağlanma motorunu oluşturuyoruz
+engine = create_engine('postgresql://postgres:12345@localhost:5432/crypto_db')
 
 # Veriyi 'gunluk_piyasa_ozeti' tablosuna üst üste ekleyerek (append) kaydeder
-df.to_sql('gunluk_piyasa_ozeti', conn, if_exists='append', index=False)
+df.to_sql('gunluk_piyasa_ozeti', engine, if_exists='append', index=False)
 
-conn.close()
-print("ETL Süreci Tamamlandı! Veriler 'kripto_piyasa.db' dosyasına kaydedildi.")
+print("ETL Süreci Tamamlandı! Veriler PostgreSQL'e kaydedildi.")
